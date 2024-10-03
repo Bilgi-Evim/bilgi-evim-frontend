@@ -3,86 +3,84 @@
     height: 100vh;
     background-color: #ffffff;
     position: relative;
-    transition: all 1.5s ease;
-  }
-  
-  .student-login-left, .student-login-right {
-    width: 50%;
+    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.student-login-left, .student-login-right {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 1.5s ease;
-  }
-  
-  .student-login-left {
+    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+}
+
+.student-login-left {
     background-color: #7fe8f0;
-  }
-  
-  .student-login-right {
+    z-index: 999;
+    flex: 4.5;
+}
+
+.student-login-right {
     background-color: #fff;
-  }
-  
-  .student-login-logo {
+    flex: 5.5; 
+}
+
+/* Yer değişiminde kaydırma işlemi */
+.student-login-page.registering {
+    flex-direction: row-reverse; /* Yatayda yön değiştir */
+}
+
+.student-login-logo {
     cursor: pointer;
-    transition: all 1.5s ease;
-  }
-  
-  .student-login-logo img {
-    max-width: 150px;
+}
+
+.student-login-logo img {
+    max-width: 80%; /* Logonun maksimum genişliği */
     height: auto;
-    transition: all 1.5s ease;
-  }
-  
-  .student-login-container {
+}
+
+.student-login-container {
     padding: 20px;
-  }
-  
-  .student-login-page.registering .student-login-left {
-    transform: translateX(100%);
-  }
-  
-  .student-login-page.registering .student-login-right {
-    transform: translateX(-100%);
-  }
-  
-  .student-login-title {
+    width: 50%;
+}
+
+.student-login-title {
     margin-bottom: 20px;
     color: #1bc4d3;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-  }
-  
-  .student-form-group {
+}
+
+
+.student-form-group {
     margin-bottom: 15px;
     width: 100%;
-    max-width: 300px;
-  }
-  
-  .student-form-label {
+}
+
+.student-form-label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
-  }
-  
-  .student-form-input {
+}
+
+.student-form-input {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .student-form-input:focus {
+}
+
+.student-form-input:focus {
     border-color: #1bc4d3;
     outline: none;
     box-shadow: 0 0 5px rgba(27, 196, 211, 0.5);
-  }
-  
-  .student-login-button,
-  .student-register-button {
+}
+
+.student-login-button,
+.student-register-button {
     width: 100%;
     padding: 12px;
     background-color: #19c9da;
@@ -93,11 +91,10 @@
     font-size: 16px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .student-login-button:hover,
-  .student-register-button:hover {
+}
+
+.student-login-button:hover,
+.student-register-button:hover {
     background-color: #20d5e6;
     transform: translateY(-2px);
-  }
-  
+}
