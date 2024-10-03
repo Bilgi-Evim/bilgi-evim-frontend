@@ -1,0 +1,121 @@
+/* Genel slider item ayarları */
+.header-carousel .item {
+    position: relative;
+    min-height: 500px; /* Slider yüksekliği */
+}
+
+.header-carousel .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resimlerin tam kaplaması */
+}
+
+/* Slider üzerindeki yazılar */
+.header-carousel .position-absolute {
+    z-index: 5; /* Yazıları ve butonları öne çıkarır */
+    background: rgba(24, 29, 56, 0.85); /* Arka planı koyulaştırır */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center; /* Dikey hizalama */
+}
+
+.header-carousel h5, 
+.header-carousel h1, 
+.header-carousel p {
+    color: #ffffff; /* Yazı rengini beyaz yapar */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Yazılar için gölge ekler */
+}
+
+.header-carousel h5 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.header-carousel h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.header-carousel p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* Butonların stilleri */
+.header-carousel .btn {
+    font-size: 16px;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+}
+
+.header-carousel .btn-primary {
+    background-color: var(--primary); 
+    color: #ffffff;
+    border: 1px solid var(--primary);
+}
+
+.header-carousel .btn-light {
+    background-color: #ffffff;
+    color: var(--primary);
+    border: 1px solid #ffffff;
+    border-radius: 0%;
+}
+
+.header-carousel .btn-primary:hover {
+    background-color: "#1dd0e0";
+    box-shadow: 0 0 5px #0dccdd,
+    0 0 10px #11c9da;
+}
+
+.header-carousel .btn-light:hover {
+    background-color: transparent; 
+    color: white;
+    box-shadow: 0 0 5px #f7feff,
+    0 0 10px #eaebeb;
+}
+
+/* Slider navigasyon okları */
+.header-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    right: 8%;
+    transform: translateY(-50%);
+    z-index: 6; /* Oklar her zaman görünür olacak şekilde ayarladım */
+    display: flex;
+    flex-direction: column;
+}
+
+.header-carousel .owl-nav .owl-prev,
+.header-carousel .owl-nav .owl-next {
+    margin: 7px 0;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF !important; /* Okların renkleri */
+    background: rgba(0, 0, 0, 0.5); /* Arka plan şeffaf siyah */
+    font-size: 22px;
+    transition: background 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    border: 1px solid #fff !important;
+}
+
+.header-carousel .owl-nav .owl-prev:hover,
+.header-carousel .owl-nav .owl-next:hover {
+    background-color: var(--primary); /* Hover durumunda renk değişir */
+}
+
+/* Slider kenar boşlukları */
+.container-fluid.p-0 {
+    padding: 0; /* Kenar boşluklarını sıfırlar */
+}
+
