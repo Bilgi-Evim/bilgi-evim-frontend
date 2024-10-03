@@ -28,7 +28,7 @@ const Hero = () => {
             alt=""
           />
           <div
-            className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+            className="hero-section position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
             style={{ background: "rgba(24, 29, 56, .7)" }}
           >
             <div className="container">
@@ -69,7 +69,7 @@ const Hero = () => {
             alt=""
           />
           <div
-            className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+            className="hero-section position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
             style={{ background: "rgba(24, 29, 56, .7)" }}
           >
             <div className="container">
