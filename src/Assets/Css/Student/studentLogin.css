@@ -1,0 +1,103 @@
+.student-login-page {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff;
+    position: relative;
+    transition: all 1.5s ease;
+  }
+  
+  .student-login-left, .student-login-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1.5s ease;
+  }
+  
+  .student-login-left {
+    background-color: #7fe8f0;
+  }
+  
+  .student-login-right {
+    background-color: #fff;
+  }
+  
+  .student-login-logo {
+    cursor: pointer;
+    transition: all 1.5s ease;
+  }
+  
+  .student-login-logo img {
+    max-width: 150px;
+    height: auto;
+    transition: all 1.5s ease;
+  }
+  
+  .student-login-container {
+    padding: 20px;
+  }
+  
+  .student-login-page.registering .student-login-left {
+    transform: translateX(100%);
+  }
+  
+  .student-login-page.registering .student-login-right {
+    transform: translateX(-100%);
+  }
+  
+  .student-login-title {
+    margin-bottom: 20px;
+    color: #1bc4d3;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .student-form-group {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .student-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .student-form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .student-form-input:focus {
+    border-color: #1bc4d3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(27, 196, 211, 0.5);
+  }
+  
+  .student-login-button,
+  .student-register-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #19c9da;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .student-login-button:hover,
+  .student-register-button:hover {
+    background-color: #20d5e6;
+    transform: translateY(-2px);
+  }
+  
