@@ -114,8 +114,13 @@
     background-color: var(--primary); /* Hover durumunda renk değişir */
 }
 
-/* Slider kenar boşlukları */
 .container-fluid.p-0 {
-    padding: 0; /* Kenar boşluklarını sıfırlar */
+    padding: 0;
 }
+
+.hero-section .container{
+    width: 100% ;
+    margin: 10%;
+}
+
 
