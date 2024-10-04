@@ -1,0 +1,89 @@
+/* Sayfa genelindeki container stilini tanımlıyoruz */
+.about-container {
+  background-color: #f9f9f9;
+}
+
+.about-header {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.about-intro {
+  margin-bottom: 30px;
+}
+
+.about-title {
+  color: #183d5c;
+  font-weight: 700;
+}
+
+.about-text {
+  color: #555;
+  line-height: 1.8;
+}
+
+/* Görsel stil */
+.about-image img {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Misyon ve Vizyon bölümü stili */
+.about-mission-vision {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.about-section-title {
+  color: #183d5c;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.about-mission, .about-vision {
+  margin-bottom: 30px;
+}
+
+/* Değerler bölümü */
+.about-values {
+  background-color: #f0f0f0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.about-value-item {
+  text-align: center;
+}
+
+.about-value-title {
+  color: #183d5c;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Başarılar bölümü */
+.about-achievements {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.about-achievement-item {
+  text-align: center;
+}
+
+.about-achievement-title {
+  color: #183d5c;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Eğitmen Kadromuz bölümü */
+.about-team {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #f0f0f0;
+}
+
+.about-team p {
+  font-size: 18px;
+}

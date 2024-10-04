@@ -3,7 +3,7 @@
     height: 100vh;
     background-color: #ffffff;
     position: relative;
-    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: all 2s ease; /* Yavaş animasyon */
 }
 
 .student-login-left, .student-login-right {
@@ -11,37 +11,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+    transition: all 2s ease;
 }
 
 .student-login-left {
     background-color: #7fe8f0;
-    z-index: 999;
-    flex: 4.5;
+    flex: 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .student-login-right {
     background-color: #fff;
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-login-form{
+    width: 50%;
+}
+
+.student-login-page.expanded .student-login-left {
+    flex: 4.5; /* Sayfa yüklendiğinde genişleme */
+}
+
+.student-login-page.expanded .student-login-right {
     flex: 5.5; 
 }
 
-/* Yer değişiminde kaydırma işlemi */
 .student-login-page.registering {
-    flex-direction: row-reverse; /* Yatayda yön değiştir */
-}
-
-.student-login-logo {
-    cursor: pointer;
+    flex-direction: row-reverse;
 }
 
 .student-login-logo img {
-    max-width: 80%; /* Logonun maksimum genişliği */
+    max-width: 80%; 
     height: auto;
 }
 
 .student-login-container {
     padding: 20px;
-    width: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .student-login-title {
@@ -51,7 +67,6 @@
     font-weight: bold;
     text-align: center;
 }
-
 
 .student-form-group {
     margin-bottom: 15px;
