@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Student/studentLogin.css";
 
 const StudentLogin = () => {
   const [isRegistering, setIsRegistering] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false); // Sayfa yüklendiğinde animasyon
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsExpanded(true);
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLogoClick = () => {
     setIsRegistering(!isRegistering);
   };
 
   return (
-    <div className={`student-login-page ${isRegistering ? "registering" : ""}`}>
+    <div className={`student-login-page ${isRegistering ? "registering" : ""} ${isExpanded ? "expanded" : ""}`}>
       <div className="student-login-left">
         <div className="student-login-logo" onClick={handleLogoClick}>
           <img className="student-login-img" src="/logo-tr.png" alt="Bilgi Evim" />

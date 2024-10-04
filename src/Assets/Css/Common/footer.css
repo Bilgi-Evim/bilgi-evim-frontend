@@ -1,11 +1,11 @@
 .footer-container {
     width: 100%;
     display: flex;
-    justify-content: center; /* İçerikleri ortalar */
+    justify-content: center;
 }
 
 .footer {
-    width: 100%; /* Footer genişliğini sayfa genişliğiyle aynı yapar */
+    width: 100%;
 }
 
 .footer .btn.btn-social {
@@ -65,7 +65,7 @@
 .footer .footer-menu a {
     margin-right: 15px;
     padding-right: 15px;
-    border-right: 1px solid rgba(255, 255, 255, .1);
+    border-right: 1px solid rgb(255, 255, 255);
 }
 
 .footer .footer-menu a:last-child {
@@ -91,4 +91,8 @@
     width: 100%; 
     height: auto; 
     max-height: 200px; 
+}
+
+.footer-container .container p{
+    color: #FFFFFF;
 }
