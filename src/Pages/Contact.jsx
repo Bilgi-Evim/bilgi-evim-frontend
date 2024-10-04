@@ -78,6 +78,15 @@ const Contact = () => {
             </form>
           </div>
         </div>
+
+        <div className="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3010.967370667666!2d39.72174828025836!3d41.004087369559485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1728071692646!5m2!1str!2str"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
       <Footer />
     </>
