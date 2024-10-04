@@ -7,121 +7,126 @@ const About = () => {
   return (
     <>
       <Header />
-      <div className="container-fluid p-5">
-        <div className="row mb-5">
-          <div className="col-lg-6">
-            <img
-              className="img-fluid"
-              src="/logo-tr.png"
-              alt="Hakkımızda"
-            />
-          </div>
-          <div className="col-lg-6 d-flex flex-column justify-content-center">
-            <h2 className="text-primary text-uppercase mb-3">Hakkımızda</h2>
-            <h1 className="display-5 mb-4">Bilgi Evim Eğitim Kurumları</h1>
-            <p className="fs-5 text-muted mb-4">
-              Bilgi Evim Eğitim Kurumları, 2024 yılında eğitim sektörüne adım
-              atarak, öğrencilerin akademik ve kişisel gelişimlerini
-              desteklemeyi hedefleyen bir kurum olarak kurulmuştur. Modern
-              eğitim yaklaşımlarını ve bireysel öğrenme yöntemlerini
-              benimseyerek, öğrencilerimize geleceğe hazırlayan güçlü bir temel
-              sunuyoruz.
-            </p>
-          </div>
-        </div>
-
-        <div className="row mb-5">
-          <div className="col-lg-12">
-            <h2 className="text-primary text-uppercase mb-3">Misyonumuz</h2>
-            <p className="fs-5 text-muted mb-4">
-              Misyonumuz, öğrencilere ihtiyaç duydukları bilgi ve becerileri
-              kazandırarak, onların akademik ve kişisel başarılarını en üst
-              düzeye taşımaktır. Kaliteli eğitim, uzman kadro ve bireysel
-              yaklaşımlarımızla her öğrencimizin potansiyelini ortaya çıkarmayı
-              amaçlıyoruz.
-            </p>
+      <div className="about-container container-fluid bg-light py-5">
+        <div className="about-header container py-5">
+          <div className="row gx-5">
+            <div className="about-image col-lg-6 mb-4">
+              <img className="img-fluid" src="/logo-tr.png" alt="Bilgi Evim" />
+            </div>
+            <div className="about-intro col-lg-6 mb-4">
+              <h1 className="about-title display-5 mb-4">Hakkımızda</h1>
+              <p className="about-text">
+                Bilgi Evim Eğitim Kurumları, eğitimde yenilikçi yöntemler ve
+                çağdaş yaklaşımlar sunarak öğrencilerimizin akademik ve kişisel
+                başarılarını en üst seviyeye çıkarmayı hedefleyen bir eğitim
+                kurumudur. Kurulduğumuz günden bu yana, öğrenci merkezli eğitim
+                anlayışımız ve alanında uzman eğitmen kadromuzla sayısız
+                başarıya imza attık. Amacımız, her öğrencimizin potansiyelini
+                keşfetmesine ve bu potansiyeli en etkili şekilde kullanmasına
+                olanak sağlamaktır. Bilgi Evim, eğitimi yalnızca bilgi aktarmak
+                olarak değil, aynı zamanda öğrencilerimizin bireysel
+                gelişimlerine ve özgüvenlerine katkı sağlamak olarak görür. Her
+                bireyin farklı öğrenme tarzlarına sahip olduğunun farkındayız ve
+                bu yüzden kişiselleştirilmiş eğitim programları ile her
+                öğrencimize ihtiyaçlarına uygun çözümler sunuyoruz. Teknolojiyi
+                eğitimin her aşamasında kullanarak öğrencilerimizi geleceğe
+                hazırlıyoruz. Uzaktan eğitim platformlarımız, dijital araçlarla
+                zenginleştirilmiş ders içerikleri ve etkileşimli öğrenme
+                süreçlerimizle, öğrencilerimizin hem okul hayatında hem de
+                mesleki yaşamlarında başarıya ulaşmalarını sağlıyoruz.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="row mb-5">
-          <div className="col-lg-12">
-            <h2 className="text-primary text-uppercase mb-3">Vizyonumuz</h2>
-            <p className="fs-5 text-muted mb-4">
-              Bilgi Evim Eğitim Kurumları olarak vizyonumuz, Türkiye'nin en
-              yenilikçi ve başarılı eğitim kurumlarından biri olmak ve dünya
-              çapında tanınan bir eğitim markası haline gelmektir. Geleceğin
-              liderlerini yetiştirmek ve topluma katkı sağlayan bireyler
-              kazandırmak en büyük hedefimizdir.
-            </p>
+        <div className="about-mission-vision container py-5">
+          <div className="row gx-5">
+            <div className="about-mission col-lg-6 mb-4">
+              <h2 className="about-section-title">Misyonumuz</h2>
+              <p className="about-text">
+                Eğitimde en iyi standartları uygulayarak öğrencilerimize
+                rehberlik etmek ve akademik başarıyı sağlamak. Eğitim
+                programlarımızla, bireylerin öğrenme süreçlerini
+                zenginleştirerek toplumumuza değer katmak.
+              </p>
+            </div>
+            <div className="about-vision col-lg-6 mb-4">
+              <h2 className="about-section-title">Vizyonumuz</h2>
+              <p className="about-text">
+                Geleceğin liderlerini yetiştiren, modern eğitim yaklaşımlarını
+                benimseyen bir kurum olmak. Dünya çapında tanınan bir eğitim
+                kurumu haline gelmek.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="row mb-5">
-          <div className="col-lg-12">
-            <h2 className="text-primary text-uppercase mb-3">Değerlerimiz</h2>
-            <ul className="fs-5 text-muted mb-4">
-              <li className="mb-3">
-                <strong>Öğrenci Odaklılık:</strong> Her öğrencinin bireysel
-                gelişimini önemseyen bir yaklaşımla hareket ederiz.
-              </li>
-              <li className="mb-3">
-                <strong>Yenilikçilik:</strong> Sürekli gelişen eğitim
-                yöntemlerini takip ederek, öğrencilerimize en modern araçları
-                sunarız.
-              </li>
-              <li className="mb-3">
-                <strong>Kalite:</strong> Eğitim kalitesini en üst seviyede
-                tutarak, öğrencilerimize nitelikli bir öğrenim ortamı sunarız.
-              </li>
-              <li className="mb-3">
-                <strong>İşbirliği:</strong> Öğrencilerimiz, velilerimiz ve
-                öğretmenlerimizle güçlü bir işbirliği içerisinde hareket ederiz.
-              </li>
-            </ul>
+        <div className="about-values container py-5">
+          <h2 className="about-section-title text-center">Değerlerimiz</h2>
+          <div className="row gx-5">
+            <div className="about-value-item col-lg-3 mb-4 text-center">
+              <h3 className="about-value-title">Yenilikçilik</h3>
+              <p className="about-text">
+                Sürekli gelişen eğitim teknolojilerini takip ediyor ve
+                öğrencilerimize en yeni yöntemlerle eğitim sunuyoruz.
+              </p>
+            </div>
+            <div className="about-value-item col-lg-3 mb-4 text-center">
+              <h3 className="about-value-title">Sorumluluk</h3>
+              <p className="about-text">
+                Öğrencilerimizin başarıya ulaşmasında sorumluluk alıyor ve her
+                adımda onları destekliyoruz.
+              </p>
+            </div>
+            <div className="about-value-item col-lg-3 mb-4 text-center">
+              <h3 className="about-value-title">Mükemmeliyet</h3>
+              <p className="about-text">
+                Eğitimde mükemmeliyeti hedefliyor, her öğrenciye en iyi deneyimi
+                sunmak için çabalıyoruz.
+              </p>
+            </div>
+            <div className="about-value-item col-lg-3 mb-4 text-center">
+              <h3 className="about-value-title">İşbirliği</h3>
+              <p className="about-text">
+                Eğitmenlerimiz, velilerimiz ve öğrencilerimizle işbirliği içinde
+                çalışarak birlikte büyüyoruz.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="row mb-5">
-          <div className="col-lg-12">
-            <h2 className="text-primary text-uppercase mb-3">Ekibimiz</h2>
-            <p className="fs-5 text-muted mb-4">
-              Alanında uzman eğitmen kadromuz, öğrencilere bireysel yaklaşımlar
-              sunarak onların öğrenme sürecini en verimli şekilde yönetmektedir.
-              Her biri kendi alanında deneyimli olan öğretmenlerimiz, yenilikçi
-              ve interaktif eğitim yöntemlerini benimseyerek, öğrencilerimize en
-              iyi öğrenme deneyimini sunmaktadır.
-            </p>
+        <div className="about-achievements container py-5">
+          <h2 className="about-section-title text-center">Başarılarımız</h2>
+          <div className="row gx-5">
+            <div className="about-achievement-item col-lg-4 mb-4 text-center">
+              <h3 className="about-achievement-title">500+ Öğrenci</h3>
+              <p className="about-text">
+                Eğitim programlarımızdan başarıyla mezun olan ve çeşitli
+                alanlarda kariyer yapan yüzlerce öğrenci.
+              </p>
+            </div>
+            <div className="about-achievement-item col-lg-4 mb-4 text-center">
+              <h3 className="about-achievement-title">10+ Yıllık Deneyim</h3>
+              <p className="about-text">
+                Eğitim alanında birikmiş 10 yıllık tecrübemizle, yenilikçi ve
+                dinamik programlar sunuyoruz.
+              </p>
+            </div>
+            <div className="about-achievement-item col-lg-4 mb-4 text-center">
+              <h3 className="about-achievement-title">%95 Başarı Oranı</h3>
+              <p className="about-text">
+                Öğrencilerimizin akademik başarısına katkıda bulunarak, onları
+                en yüksek başarı oranlarına ulaştırıyoruz.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="row mb-5">
-          <div className="col-lg-12">
-            <h2 className="text-primary text-uppercase mb-3">Tarihçemiz</h2>
-            <p className="fs-5 text-muted mb-4">
-              Bilgi Evim Eğitim Kurumları, 2010 yılında birkaç öğrenciyle eğitim
-              vermeye başlamış ve kısa sürede yüzlerce öğrenciye ulaşmıştır.
-              Kuruluşumuzdan bu yana büyüyen yapımızla, hem akademik başarıya
-              hem de öğrencilerin kişisel gelişimine odaklanan bir eğitim
-              anlayışıyla faaliyetlerimizi sürdürüyoruz.
-            </p>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-lg-12">
-            <h2 className="text-primary text-uppercase mb-3">Bize Ulaşın</h2>
-            <p className="fs-5 text-muted mb-4">
-              Sorularınız veya geri bildirimleriniz için bizimle iletişime
-              geçebilirsiniz. Eğitim yolculuğunuzda size yardımcı olmak için
-              buradayız!
-            </p>
-            <a href="/contact" className="btn btn-primary py-md-3 px-md-5">
-              Bize Ulaşın
-            </a>
-          </div>
+        <div className="about-team container py-5">
+          <h2 className="about-section-title text-center">Eğitmen Kadromuz</h2>
+          <p className="about-text text-center">
+            Uzman eğitmen kadromuz, alanında lider isimlerden oluşmaktadır. Her
+            biri kendi alanında deneyimli ve öğrencilerimizin gelişimine katkı
+            sağlamayı amaçlamaktadır.
+          </p>
         </div>
       </div>
-
       <Footer />
     </>
   );

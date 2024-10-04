@@ -44,7 +44,7 @@ const Header = () => {
                 </a>
               </div>
             </div>
-            <a href="#" className="nav-item nav-link">
+            <a href="/contact" className="nav-item nav-link">
               İletişim
             </a>
           </div>

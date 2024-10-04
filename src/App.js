@@ -8,6 +8,8 @@ import { RoleProvider } from "./Context/RoleContext";
 import StudentRoutes from "./Routes/StudentRoutes";
 import TeacherRoutes from "./Routes/TeacherRoutes";
 import About from "./Pages/AboutUs";
+import Contact from "./Pages/Contact";
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/admin/*" element={<AdminRoutes />} />
             <Route path="/student/*" element={<StudentRoutes />} />
