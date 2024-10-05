@@ -24,7 +24,7 @@ const Header = () => {
             <a href="/about-us" className="nav-item nav-link">
               Hakkımızda
             </a>
-            <a href="#courses" className="nav-item nav-link">
+            <a href="/home#courses" className="nav-item nav-link">
               Kurslar
             </a>
             <div className="nav-item dropdown">

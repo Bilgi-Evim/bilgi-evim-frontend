@@ -1,12 +1,18 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
+import React from "react";
+import Header from "../Components/Common/Header";
+import Footer from "../Components/Common/Footer";
+import Sidebar from "../Components/Admin/Sidebar";
 
 const AdminLayout = ({ children }) => {
   return (
-    <div>
-      <Navbar userRole="admin" />
-      <div>{children}</div>
-    </div>
+    <>
+      <Header />
+      <div className="admin-layout d-flex">
+        <Sidebar />
+        <main className="content-area">{children}</main>
+      </div>
+      <Footer />
+    </>
   );
 };
 

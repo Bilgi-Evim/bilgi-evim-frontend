@@ -22,14 +22,14 @@ const Courses = () => {
                 />
                 <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                   <a
-                    href="#"
+                    href="#courses"
                     className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end read-more-btn"
                     style={{ borderRadius: "30px 0 0 30px" }}
                   >
                     Detaylar
                   </a>
                   <a
-                    href="#"
+                    href="#courses"
                     className="flex-shrink-0 btn btn-sm btn-primary px-3"
                     style={{ borderRadius: "0 30px 30px 0" }}
                   >
@@ -76,14 +76,14 @@ const Courses = () => {
                 />
                 <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                   <a
-                    href="#"
+                    href="#courses"
                     className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end read-more-btn"
                     style={{ borderRadius: "30px 0 0 30px" }}
                   >
                     Detaylar
                   </a>
                   <a
-                    href="#"
+                    href="#courses"
                     className="flex-shrink-0 btn btn-sm btn-primary px-3 "
                     style={{ borderRadius: "0 30px 30px 0" }}
                   >
@@ -130,14 +130,14 @@ const Courses = () => {
                 />
                 <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                   <a
-                    href="#"
+                    href="#courses"
                     className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end read-more-btn "
                     style={{ borderRadius: "30px 0 0 30px" }}
                   >
                     Detaylar
                   </a>
                   <a
-                    href="#"
+                    href="#courses"
                     className="flex-shrink-0 btn btn-sm btn-primary px-3"
                     style={{ borderRadius: "0 30px 30px 0" }}
                   >
