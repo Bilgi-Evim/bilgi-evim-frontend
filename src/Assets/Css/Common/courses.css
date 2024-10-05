@@ -1,0 +1,54 @@
+.category img,
+.course-item img {
+    transition: 0.5s;
+}
+
+.category a:hover img,
+.course-item:hover img {
+    transform: scale(1.1);
+}
+
+.course-item .position-absolute {
+    z-index: 1;
+}
+
+.course-item .position-absolute a {
+    z-index: 2;
+    position: relative;
+}
+
+.course-item img {
+    z-index: 0;
+}
+
+.course-item .w-100.d-flex.justify-content-center.position-absolute {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.course-item .w-100.d-flex.justify-content-center.position-absolute a {
+    color: #fff;
+    background-color: #06BBCC;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.course-item .w-100.d-flex.justify-content-center.position-absolute a:hover {
+    background-color: #1fc4d3;
+    text-decoration: none;
+}
+
+.read-more-btn {
+    border-right: 1px solid #fff;
+}
+
+.course-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

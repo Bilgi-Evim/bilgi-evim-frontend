@@ -9,7 +9,6 @@ import StudentRoutes from "./Routes/StudentRoutes";
 import TeacherRoutes from "./Routes/TeacherRoutes";
 import About from "./Pages/AboutUs";
 import Contact from "./Pages/Contact";
-import Courses from "./Pages/Courses";
 
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/admin/*" element={<AdminRoutes />} />
