@@ -27,11 +27,20 @@
 .sidebar ul {
   list-style-type: none;
   padding: 0;
-  margin-top: 10px; /* Fotoğraf ve menü arasında boşluk için */
+  margin: 0; /* Üstten ve alttan boşluk yok */
 }
 
 .sidebar li {
   padding: 15px;
+  margin: 0; /* Boşluk kaldırıldı */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Kenarlık rengi ve kalınlığı */
+  border-left: none; /* Sol kenarlık kaldırıldı */
+  border-right: 1px solid rgba(255, 255, 255, 0.2); /* Sağ kenarlık eklendi */
+  transition: background-color 0.3s ease; /* Geçiş efekti için */
+}
+
+.sidebar li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Son öğe alt kenarlığı */
 }
 
 .sidebar li a {
@@ -41,5 +50,10 @@
 }
 
 .sidebar li:hover {
-  background-color: #495057;
+  background-color: #495057; /* Üzerine gelindiğinde arka plan rengi */
+}
+
+/* İlk öğenin üst kenarlığını gizlemek için */
+.sidebar li:first-child {
+  border-top: none; /* En üstteki öğenin üst kenarlığı yok */
 }
