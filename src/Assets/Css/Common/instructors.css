@@ -1,0 +1,26 @@
+.team-item img {
+  transition: 0.5s;
+}
+
+.team-item:hover img {
+  transform: scale(1.1);
+}
+
+.ig-btn:hover {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+.tw-btn:hover {
+  background: linear-gradient(45deg, #1da1f2, #1a91da);
+}
+
+.fb-btn:hover {
+  background: linear-gradient(45deg, #3b5998, #254997);
+}
+
+.fb-btn,
+.tw-btn,
+.ig-btn {
+  transition: 1.3s ease, transform 0.3s ease;
+  transform: scale(1.05);
+}
