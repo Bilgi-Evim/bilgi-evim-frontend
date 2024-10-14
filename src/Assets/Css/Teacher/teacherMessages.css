@@ -1,0 +1,106 @@
+.message-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .user-list {
+    width: 250px;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+  }
+  
+  .user-list h3 {
+    text-align: center;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-button {
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .submenu {
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+  .submenu li {
+    padding: 5px 0;
+    cursor: pointer;
+  }
+  
+  .submenu li.active {
+    font-weight: bold;
+    color: #06BBCC;
+  }
+  
+  .chat-container {
+    flex-grow: 0.75;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+  }
+  
+  .chat-box {
+    flex-grow: 1; 
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .message.teacher {
+    background-color: #d1e7dd;
+    text-align: right;
+  }
+  
+  .message.student, .message.director {
+    background-color: #f8d7da;
+    text-align: left;
+  }
+  
+  .input-group {
+    display: flex;
+  }
+  
+  .input-group input {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #17c9da;
+    border-color: #06BBCC;
+    color: white;
+  }
+  
+  .chat-container h2{
+    margin-left: 1.2rem;
+  }
