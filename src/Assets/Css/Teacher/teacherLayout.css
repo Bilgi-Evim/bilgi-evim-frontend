@@ -1,10 +1,16 @@
 .teacher-layout {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .content-area {
-    flex-grow: 1;
-    padding: 20px;
-  }
-  
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-area {
+  flex-grow: 1;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.content-area::-webkit-scrollbar { 
+  display: none;
+}

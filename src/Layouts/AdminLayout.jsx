@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../Components/Common/Header";
-import Footer from "../Components/Common/Footer";
 import Sidebar from "../Components/Admin/Sidebar";
 import "../Assets/Css/Admin/adminLayout.css"
 

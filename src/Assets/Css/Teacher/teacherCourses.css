@@ -1,0 +1,28 @@
+.teacher-courses-container {
+  padding: 20px;
+}
+
+.course-card {
+  transition: transform 0.3s;
+  display: flex;
+  height: 100%; 
+  justify-content: space-between;
+  flex-direction: column;
+  border: none;
+  border-radius: 10px;
+}
+.course-card:hover {
+  transform: scale(1.05);
+}
+
+.course-image {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.status-icon {
+  margin-left: 5px;
+  font-size: 1.2em;
+}
