@@ -19,7 +19,7 @@ const TeacherSidebar = () => {
           <Link to="/teacher/dashboard">Dashboard</Link>
         </li>
         <li>
-          <Link to="/teacher/students">Öğrenciler</Link>
+          <Link to="/teacher/students-list">Öğrenciler</Link>
         </li>
         <li>
           <Link to="/teacher/courses">Dersler</Link>

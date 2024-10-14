@@ -1,0 +1,24 @@
+.student-list-container {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .student-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: rgb(245, 253, 253);
+  }
+  
+  .student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .card-text {
+    color: #6c757d;
+  }
+  

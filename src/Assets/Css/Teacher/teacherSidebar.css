@@ -16,29 +16,29 @@
   }
   
   .sidebar-profile-pic {
-    width: 80px; /* İstediğiniz genişliği ayarlayın */
-    height: 80px; /* İstediğiniz yüksekliği ayarlayın */
-    border-radius: 50%; /* Yuvarlak bir görünüm için */
-    border: 2px solid white; /* Beyaz çerçeve */
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;
+    border: 2px solid white;
   }
   
   .teacher-sidebar ul {
     list-style-type: none;
     padding: 0;
-    margin: 0; /* Üstten ve alttan boşluk yok */
+    margin: 0; 
   }
   
   .teacher-sidebar li {
     padding: 15px;
-    margin: 0; /* Boşluk kaldırıldı */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Kenarlık rengi ve kalınlığı */
-    border-left: none; /* Sol kenarlık kaldırıldı */
-    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Sağ kenarlık eklendi */
-    transition: background-color 0.3s ease; /* Geçiş efekti için */
+    margin: 0; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-left: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease;
   }
   
   .teacher-sidebar li:last-child {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Son öğe alt kenarlığı */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
   }
   
   .teacher-sidebar li a {
@@ -48,6 +48,6 @@
   }
   
   .teacher-sidebar li:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Üzerine gelindiğinde arka plan rengi */
+    background-color: rgba(255, 255, 255, 0.1);
   }
  
