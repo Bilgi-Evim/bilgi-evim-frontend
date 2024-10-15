@@ -1,0 +1,42 @@
+.admin-student-list-container {
+    border-radius: 8px;
+  }
+  
+  .admin-student-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: rgb(245, 253, 253);
+    border-radius: 8px;
+  }
+  
+  .admin-student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .admin-card-title {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .admin-card-text {
+    color: #6c757d;
+  }
+  
+  .admin-student-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .admin-btn-primary {
+    background-color: var(--primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .admin-btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

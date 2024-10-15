@@ -3,6 +3,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import AdminDashboard from '../Components/Admin/AdminDashboard';
 import AdminSettings from "../Components/Admin/AdminSettings";
 import AdminLogin from '../Components/Admin/AdminLogin';
+import StudentList from '../Components/Admin/StudentList';
+import TeachersList from '../Components/Admin/TeachersList';
+import Messages from '../Components/Admin/Messages';
+import Feedback from '../Components/Admin/Feedback';
 
 const AdminRoutes = () => {
   return (
@@ -10,8 +14,12 @@ const AdminRoutes = () => {
       <Route path="/" element={<Navigate to="dashboard" replace />} />
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route path="/students-list" element={<StudentList />} />
+      <Route path="/teachers-list" element={<TeachersList />} />
+      <Route path="/messages" element={<Messages />} />
+      <Route path="/reports" element={<Messages />} />
+      <Route path="/feedback" element={<Feedback />} />
       <Route path="/settings" element={<AdminSettings />} />
-      {/* Diğer route'lar buraya eklenebilir */}
     </Routes>
   );
 };

@@ -1,0 +1,56 @@
+.admin-teachers-list-container {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .admin-subject-section {
+    margin-bottom: 40px;
+  }
+  
+  .admin-subject-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .admin-teacher-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .admin-teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .admin-teacher-card-title {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .admin-teacher-card-text {
+    color: #6c757d;
+  }
+  
+  .admin-teacher-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .admin-teacher-btn-primary {
+    background-color: var(--primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .admin-teacher-btn-primary:hover {
+    background-color: #4dc2f8;
+    color: white;
+  }
+  
