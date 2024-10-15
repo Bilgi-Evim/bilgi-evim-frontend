@@ -1,12 +1,13 @@
 import React from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
+import "../../Assets/Css/Admin/messages.css"
 
-const AdminSettings = () => {
+const Messages = () => {
   return (
     <AdminLayout>
-      <div>AdminSettings</div>
+      <div>Messages</div>
     </AdminLayout>
   );
 };
 
-export default AdminSettings;
+export default Messages;

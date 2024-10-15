@@ -15,10 +15,10 @@ const Sidebar = () => {
           <Link to="/admin/dashboard">Dashboard</Link>
         </li>
         <li>
-          <Link to="/admin/users">Öğrenciler</Link>
+          <Link to="/admin/students-list">Öğrenciler</Link>
         </li>
         <li>
-          <Link to="/admin/courses">Öğretmenler</Link>
+          <Link to="/admin/teachers-list">Öğretmenler</Link>
         </li>
         <li>
           <Link to="/admin/messages">Mesajlar</Link>

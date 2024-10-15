@@ -1,12 +1,13 @@
 import React from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
+import "../../Assets/Css/Admin/feedback.css"
 
-const AdminSettings = () => {
+const Feedback = () => {
   return (
     <AdminLayout>
-      <div>AdminSettings</div>
+      <div>Feedback</div>
     </AdminLayout>
   );
 };
 
-export default AdminSettings;
+export default Feedback;

@@ -1,12 +1,13 @@
 import React from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
+import "../../Assets/Css/Admin/adminReports.css"
 
-const AdminSettings = () => {
+const Reports = () => {
   return (
     <AdminLayout>
-      <div>AdminSettings</div>
+      <div>Reports</div>
     </AdminLayout>
   );
 };
 
-export default AdminSettings;
+export default Reports;

@@ -1,12 +1,13 @@
 import React from "react";
+import "../../Assets/Css/Admin/studentList.css";
 import AdminLayout from "../../Layouts/AdminLayout";
 
-const AdminSettings = () => {
+const StudentList = () => {
   return (
     <AdminLayout>
-      <div>AdminSettings</div>
+      <div>StudentList</div>
     </AdminLayout>
   );
 };
 
-export default AdminSettings;
+export default StudentList;
