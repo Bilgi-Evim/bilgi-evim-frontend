@@ -7,7 +7,7 @@ import { AuthContext } from '../../Context/AuthContext';
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const { setUser } = useContext(AuthContext);
-  const navigate = useNavigate(); // useHistory yerine useNavigate kullanıyoruz
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

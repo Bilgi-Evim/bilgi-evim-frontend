@@ -94,7 +94,7 @@
 }
 
 .btn-primary:hover {
-  background-color: #1dd0e0;
+  background-color: #1cc0cf;
   border-color: #06bbcc;
 }
 
@@ -113,10 +113,15 @@
   color: #1dd0e0 !important;
 }
 
-.btn {
+.navbar-right .btn:active, .navbar-right .btn:visited {
+  background-color: #1dd0e0 !important; 
+}
+.navbar-right .btn {
   font-family: "Nunito", sans-serif;
   font-weight: 600;
   transition: 0.5s;
+  border: none;
+  border-radius: 0 !important;
 }
 
 .btn-square {
