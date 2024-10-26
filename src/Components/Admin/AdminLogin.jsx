@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Admin/AdminLogin.css";
+const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL;
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,10 +17,34 @@ const AdminLogin = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Kullanıcı Adı:", username);
-    console.log("Şifre:", password);
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch(`${AUTH_API_URL}/login/admin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: username, password: password }),
+      });
+
+      const data = await response.json();
+      console.log(data); 
+      if (response.ok) {
+        localStorage.setItem("access_token", data.access_token);
+        alert("Giriş başarılı!");
+        window.location.href = "/admin/dashboard"
+      } else {
+        setError(data.error || "Giriş başarısız. Tekrar deneyin.");
+      }
+    } catch (err) {
+      setError("Bir hata oluştu. Lütfen tekrar deneyin.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,10 +81,11 @@ const AdminLogin = () => {
               className="admin-form-input"
             />
           </div>
-          <button type="submit" className="admin-login-button">
-            Giriş Yap
+          <button type="submit" className="admin-login-button" disabled={loading}>
+            {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
           </button>
         </form>
+        {error && <p className="admin-login-error">{error}</p>}
       </div>
     </div>
   );
