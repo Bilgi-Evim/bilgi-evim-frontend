@@ -49,4 +49,8 @@ html::-webkit-scrollbar{
   width: calc(100% + 60px);
   left: 0;
 }
-
+.toast-message {
+  width: 400px; 
+  text-align: center;
+  font-size: 16px;
+}

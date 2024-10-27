@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Teacher/teacherLogin.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL;
 
 const TeacherLogin = () => {
@@ -7,7 +9,7 @@ const TeacherLogin = () => {
   const [password, setPassword] = useState("");
   const [t_number, sett_number] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -20,33 +22,55 @@ const TeacherLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     setLoading(true);
     setError("");
 
-    try{
-      const response = await fetch(`${AUTH_API_URL}/login/teacher`,{
+    try {
+      const response = await fetch(`${AUTH_API_URL}/login/teacher`, {
         method: "POST",
         headers: {
-          "Content-Type":"application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ tc:tc, t_number:t_number, password:password})
-      })
-      
+        body: JSON.stringify({
+          tc: tc,
+          t_number: t_number,
+          password: password,
+        }),
+      });
+
       const data = await response.json();
-      if (response.ok){
+      if (response.ok) {
         localStorage.setItem("access_token", data.access_token);
-        alert("Giriş Başarılı");
-        window.location.href="/teacher/dashboard";
-      }else{
-        setError(data.error || "Giriş başarısız. Tekrar deneyin.");
+        toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
+          position: "top-center",
+          autoClose: 3000,
+          className: "toast-message",
+          pauseOnHover: false,
+        });
+
+        setTimeout(() => {
+          window.location.href = "/teacher/dashboard";
+        }, 2000);
+      } else {
+        toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
+          position: "top-center",
+          autoClose: 3000,
+          pauseOnHover: false,
+          className: "toast-message",
+        });
       }
-    }catch(err){
-      setError("Bir hata oluştu. Lütfen tekrar deneyin.");
-    }finally {
+    } catch (err) {
+      toast.error("Bir hata oluştu. Lütfen daha sonra tekrar deneyin.", {
+        position: "top-center",
+        autoClose: 3000,
+        pauseOnHover: false,
+        className: "toast-message",
+      });
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className={`teacher-login-page ${isExpanded ? "expanded" : ""}`}>
@@ -68,7 +92,7 @@ const TeacherLogin = () => {
               type="text"
               id="tc"
               value={tc}
-              maxLength = "11"
+              maxLength="11"
               onChange={(e) => setTc(e.target.value)}
               required
               className="teacher-form-input"
@@ -84,7 +108,7 @@ const TeacherLogin = () => {
               value={t_number}
               onChange={(e) => sett_number(e.target.value)}
               required
-              maxLength = "3"
+              maxLength="3"
               className="teacher-form-input"
             />
           </div>
@@ -98,7 +122,7 @@ const TeacherLogin = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              maxLength = "30"
+              maxLength="30"
               className="teacher-form-input"
             />
           </div>
@@ -108,6 +132,7 @@ const TeacherLogin = () => {
         </form>
         {error && <p className="admin-login-error">{error}</p>}
       </div>
+      <ToastContainer />
     </div>
   );
 };
