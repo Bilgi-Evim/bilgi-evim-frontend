@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Admin/AdminLogin.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL;
 
 const AdminLogin = () => {
@@ -32,16 +35,32 @@ const AdminLogin = () => {
       });
 
       const data = await response.json();
-      console.log(data); 
       if (response.ok) {
         localStorage.setItem("access_token", data.access_token);
-        alert("Giriş başarılı!");
-        window.location.href = "/admin/dashboard"
+        toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
+          position: "top-center",
+          autoClose: 3000,
+          className: "toast-message",
+          pauseOnHover: false,
+        });
+
+        setTimeout(() => {
+          window.location.href = "/admin/dashboard";
+        }, 2000);
       } else {
-        setError(data.error || "Giriş başarısız. Tekrar deneyin.");
+        toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
+          position: "top-center",
+          autoClose: 3000,
+          pauseOnHover: false,
+          className: "toast-message",
+        });
       }
     } catch (err) {
-      setError("Bir hata oluştu. Lütfen tekrar deneyin.");
+      toast.error("Bir hata oluştu. Lütfen daha sonra tekrar deneyin.", {
+        position: "top-center",
+        autoClose: 3000,
+          pauseOnHover: false,
+        className: "toast-message",})
     } finally {
       setLoading(false);
     }
@@ -81,12 +100,18 @@ const AdminLogin = () => {
               className="admin-form-input"
             />
           </div>
-          <button type="submit" className="admin-login-button" disabled={loading}>
+          <button
+            type="submit"
+            className="admin-login-button"
+            disabled={loading}
+          >
             {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
           </button>
         </form>
         {error && <p className="admin-login-error">{error}</p>}
       </div>
+      <ToastContainer />
+
     </div>
   );
 };
