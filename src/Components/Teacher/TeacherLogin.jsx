@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Teacher/teacherLogin.css";
+const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL;
 
 const TeacherLogin = () => {
-  const [username, setUsername] = useState("");
+  const [tc, setTc] = useState("");
   const [password, setPassword] = useState("");
+  const [t_number, sett_number] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,30 +18,73 @@ const TeacherLogin = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Kullanıcı Adı:", username);
-    console.log("Şifre:", password);
-  };
+    
+    setLoading(true);
+    setError("");
+
+    try{
+      const response = await fetch(`${AUTH_API_URL}/login/teacher`,{
+        method: "POST",
+        headers: {
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify({ tc:tc, t_number:t_number, password:password})
+      })
+      
+      const data = await response.json();
+      if (response.ok){
+        localStorage.setItem("access_token", data.access_token);
+        alert("Giriş Başarılı");
+        window.location.href="/teacher/dashboard";
+      }else{
+        setError(data.error || "Giriş başarısız. Tekrar deneyin.");
+      }
+    }catch(err){
+      setError("Bir hata oluştu. Lütfen tekrar deneyin.");
+    }finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className={`teacher-login-page ${isExpanded ? "expanded" : ""}`}>
       <div className="teacher-login-logo">
-        <img className="teacher-login-img" src="/logo-tr.png" alt="Bilgi Evim" />
+        <img
+          className="teacher-login-img"
+          src="/logo-tr.png"
+          alt="Bilgi Evim"
+        />
       </div>
       <div className="teacher-login-container">
         <h2 className="teacher-login-title">Öğretmen Girişi</h2>
         <form onSubmit={handleSubmit} className="teacher-login-form">
           <div className="teacher-form-group">
-            <label htmlFor="username" className="teacher-form-label">
-              Kullanıcı Adı:
+            <label htmlFor="tc" className="teacher-form-label">
+              Kimlik Numarası:
             </label>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="tc"
+              value={tc}
+              maxLength = "11"
+              onChange={(e) => setTc(e.target.value)}
               required
+              className="teacher-form-input"
+            />
+          </div>
+          <div className="teacher-form-group">
+            <label htmlFor="t_number" className="teacher-form-label">
+              Öğretmen Numarası:
+            </label>
+            <input
+              type="text"
+              id="t_number"
+              value={t_number}
+              onChange={(e) => sett_number(e.target.value)}
+              required
+              maxLength = "3"
               className="teacher-form-input"
             />
           </div>
@@ -51,13 +98,15 @@ const TeacherLogin = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              maxLength = "30"
               className="teacher-form-input"
             />
           </div>
           <button type="submit" className="teacher-login-button">
-            Giriş Yap
+            {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
           </button>
         </form>
+        {error && <p className="admin-login-error">{error}</p>}
       </div>
     </div>
   );

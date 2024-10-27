@@ -32,11 +32,11 @@ const AdminLogin = () => {
       });
 
       const data = await response.json();
-      console.log(data); 
       if (response.ok) {
         localStorage.setItem("access_token", data.access_token);
         alert("Giriş başarılı!");
         window.location.href = "/admin/dashboard"
+        
       } else {
         setError(data.error || "Giriş başarısız. Tekrar deneyin.");
       }
