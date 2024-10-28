@@ -13,6 +13,11 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk("auth/logout", async (_, { dispatch }) => {
+  logoutService();
+  dispatch(clearUser());
+});
+
 const initialState = {
   user: getCurrentUser(),
   isAuthenticated: !!getCurrentUser(),
@@ -46,10 +51,4 @@ const authSlice = createSlice({
 });
 
 export const { clearUser } = authSlice.actions;
-
-export const logout = () => (dispatch) => {
-  logoutService();
-  dispatch(clearUser());
-};
-
 export default authSlice.reducer;
