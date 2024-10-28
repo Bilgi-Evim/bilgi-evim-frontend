@@ -1,11 +1,22 @@
 import React from 'react'
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../Redux/authSlice";
 const StudentDashboard = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout()).then(() => {
+      navigate("/home", { replace: true });
+    });
+  };
   return (
     <div>StudentDashboard
-      <ToastContainer />
-
+      <div>
+        <button onClick={handleLogout}>Çıkış Yap</button>
+      </div>
     </div>
   )
 }

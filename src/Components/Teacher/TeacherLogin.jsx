@@ -2,74 +2,60 @@ import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Teacher/teacherLogin.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL;
+import { login } from "../../Redux/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TeacherLogin = () => {
   const [tc, setTc] = useState("");
   const [password, setPassword] = useState("");
-  const [t_number, sett_number] = useState("");
+  const [teacherNumber, setTeacherNumber] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isAuthenticated && user?.role === "teacher") {
+      toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
+        position: "top-center",
+        autoClose: 1000,
+        className: "toast-message",
+        pauseOnHover: false,
+      });
+      setTimeout(() => {
+        navigate("/teacher/dashboard", { replace: true });
+      }, 1500);
+    }
+  }, [isAuthenticated, user, navigate]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsExpanded(true);
     }, 10);
-
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
     setLoading(true);
-    setError("");
 
-    try {
-      const response = await fetch(`${AUTH_API_URL}/login/teacher`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          tc: tc,
-          t_number: t_number,
-          password: password,
-        }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("access_token", data.access_token);
-        toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
-          position: "top-center",
-          autoClose: 3000,
-          className: "toast-message",
-          pauseOnHover: false,
-        });
-
-        setTimeout(() => {
-          window.location.href = "/teacher/dashboard";
-        }, 2000);
-      } else {
+    const credentials = { tc, password, teacher_number: teacherNumber };
+    dispatch(login({ credentials, role: "teacher" }))
+      .unwrap()
+      .then((result) => {})
+      .catch((error) => {
+        console.error("Giriş hatası:", error);
         toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
           position: "top-center",
           autoClose: 3000,
           pauseOnHover: false,
           className: "toast-message",
         });
-      }
-    } catch (err) {
-      toast.error("Bir hata oluştu. Lütfen daha sonra tekrar deneyin.", {
-        position: "top-center",
-        autoClose: 3000,
-        pauseOnHover: false,
-        className: "toast-message",
-      });
-    } finally {
-      setLoading(false);
-    }
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -83,7 +69,7 @@ const TeacherLogin = () => {
       </div>
       <div className="teacher-login-container">
         <h2 className="teacher-login-title">Öğretmen Girişi</h2>
-        <form onSubmit={handleSubmit} className="teacher-login-form">
+        <form onSubmit={handleLogin} className="teacher-login-form">
           <div className="teacher-form-group">
             <label htmlFor="tc" className="teacher-form-label">
               Kimlik Numarası:
@@ -99,14 +85,14 @@ const TeacherLogin = () => {
             />
           </div>
           <div className="teacher-form-group">
-            <label htmlFor="t_number" className="teacher-form-label">
+            <label htmlFor="teacherNumber" className="teacher-form-label">
               Öğretmen Numarası:
             </label>
             <input
               type="text"
-              id="t_number"
-              value={t_number}
-              onChange={(e) => sett_number(e.target.value)}
+              id="teacherNumber"
+              value={teacherNumber}
+              onChange={(e) => setTeacherNumber(e.target.value)}
               required
               maxLength="3"
               className="teacher-form-input"
@@ -126,11 +112,14 @@ const TeacherLogin = () => {
               className="teacher-form-input"
             />
           </div>
-          <button type="submit" className="teacher-login-button">
+          <button
+            type="submit"
+            className="teacher-login-button"
+            disabled={loading}
+          >
             {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
           </button>
         </form>
-        {error && <p className="admin-login-error">{error}</p>}
       </div>
       <ToastContainer />
     </div>

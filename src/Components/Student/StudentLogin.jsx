@@ -17,12 +17,8 @@ const StudentLogin = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
 
-  console.log("Redux isAuthenticated:", isAuthenticated);
-  console.log("Redux user:", user);
-
   useEffect(() => {
     if (isAuthenticated && user?.role === "student") {
-      console.log("Kullanıcı giriş yapmış, yönlendirme yapılıyor...");
       toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
         position: "top-center",
         autoClose: 1000,
@@ -52,7 +48,6 @@ const StudentLogin = () => {
       .then((result) => {
       })
       .catch((error) => {
-        console.error("Giriş hatası:", error);
         toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
           position: "top-center",
           autoClose: 3000,
