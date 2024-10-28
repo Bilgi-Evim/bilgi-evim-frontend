@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 import "../../Assets/Css/Student/studentLogin.css";
-
-const AUTH_API_URL = process.env.REACT_APP_AUTH_API_URL;
 
 const StudentLogin = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -11,12 +11,13 @@ const StudentLogin = () => {
   const [schoolNumber, setSchoolNumber] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsExpanded(true);
     }, 10);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -25,41 +26,25 @@ const StudentLogin = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${AUTH_API_URL}/login/student`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ tc, school_number: schoolNumber, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("access_token", data.access_token);
+      const credentials = { tc, password, school_number: schoolNumber };
+      const response = await login(credentials, "student");
+      if (response.access_token) {
         toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
           position: "top-center",
-          autoClose: 3000,
+          autoClose: 1000,
           className: "toast-message",
           pauseOnHover: false,
         });
 
         setTimeout(() => {
-          window.location.href = "/student/dashboard";
+          navigate("/student/dashboard");
         }, 2000);
-      } else {
-        toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
-          position: "top-center",
-          autoClose: 3000,
-          pauseOnHover: false,
-          className: "toast-message",
-        });
       }
     } catch (err) {
-      toast.error("Bir hata oluştu. Lütfen daha sonra tekrar deneyin.", {
+      toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
         position: "top-center",
         autoClose: 3000,
-          pauseOnHover: false,
+        pauseOnHover: false,
         className: "toast-message",
       });
     } finally {
@@ -71,22 +56,15 @@ const StudentLogin = () => {
     <div className={`student-login-page ${isExpanded ? "expanded" : ""}`}>
       <div className="student-login-left">
         <div className="student-login-logo">
-          <img
-            className="student-login-img"
-            src="/logo-tr.png"
-            alt="Bilgi Evim"
-          />
+          <img className="student-login-img" src="/logo-tr.png" alt="Bilgi Evim" />
         </div>
       </div>
-
       <div className="student-login-right">
         <div className="student-login-container">
           <h2 className="student-login-title">Öğrenci Giriş</h2>
           <form className="student-login-form" onSubmit={handleLogin}>
             <div className="student-form-group">
-              <label htmlFor="tc" className="student-form-label">
-                T.C. Kimlik No:
-              </label>
+              <label htmlFor="tc" className="student-form-label">T.C. Kimlik No:</label>
               <input
                 type="text"
                 id="tc"
@@ -96,10 +74,9 @@ const StudentLogin = () => {
                 className="student-form-input"
               />
             </div>
+
             <div className="student-form-group">
-              <label htmlFor="schoolNumber" className="student-form-label">
-                Okul Numarası:
-              </label>
+              <label htmlFor="schoolNumber" className="student-form-label">Okul Numarası:</label>
               <input
                 type="text"
                 id="schoolNumber"
@@ -109,10 +86,9 @@ const StudentLogin = () => {
                 className="student-form-input"
               />
             </div>
+
             <div className="student-form-group">
-              <label htmlFor="password" className="student-form-label">
-                Şifre:
-              </label>
+              <label htmlFor="password" className="student-form-label">Şifre:</label>
               <input
                 type="password"
                 id="password"
@@ -122,11 +98,8 @@ const StudentLogin = () => {
                 className="student-form-input"
               />
             </div>
-            <button
-              type="submit"
-              className="student-login-button"
-              disabled={loading}
-            >
+
+            <button type="submit" className="student-login-button" disabled={loading}>
               {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
             </button>
           </form>

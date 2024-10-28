@@ -1,14 +1,32 @@
-// src/services/authService.js
 import axios from 'axios';
 import tokenManager from '../Utils/tokenManager';
-import { jwtDecode } from 'jwt-decode'; // Named export olarak içe aktarma
+import { jwtDecode } from 'jwt-decode';
 
-export const login = async (credentials) => {
-  const response = await axios.post('/api/login', credentials);
-  if (response.data.token) {
-    tokenManager.saveToken(response.data.token);
+const API_URL = process.env.REACT_APP_AUTH_API_URL;
+
+export const login = async (credentials, role) => {
+  let url;
+
+  if (role === "student") {
+    url = `${API_URL}/login/student`;
+  } else if (role === "teacher") {
+    url = `${API_URL}/login/teacher`;
+  } else if (role === "admin") {
+    url = `${API_URL}/login/admin`;
+  } else {
+    throw new Error("Invalid role");
   }
-  return response.data.user;
+
+  try {
+    const response = await axios.post(url, credentials);
+
+    if (response.data.access_token) {
+      tokenManager.saveToken(response.data.access_token);
+    }
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const logout = () => {
@@ -17,5 +35,5 @@ export const logout = () => {
 
 export const getCurrentUser = () => {
   const token = tokenManager.getToken();
-  return token ? jwtDecode(token) : null; // jwtDecode fonksiyonu burada kullanılıyor
+  return token ? jwtDecode(token) : null;
 };
