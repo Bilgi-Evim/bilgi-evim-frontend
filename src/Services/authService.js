@@ -1,6 +1,6 @@
 import axios from 'axios';
 import tokenManager from '../Utils/tokenManager';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 const API_URL = process.env.REACT_APP_AUTH_API_URL;
 
@@ -29,11 +29,19 @@ export const login = async (credentials, role) => {
   }
 };
 
-export const logout = () => {
-  tokenManager.clearToken();
-};
-
 export const getCurrentUser = () => {
   const token = tokenManager.getToken();
-  return token ? jwtDecode(token) : null;
+  if (!token) return null;
+
+  const decodedToken = jwtDecode(token);
+  
+  return {
+    token,
+    role: decodedToken.role,
+    ...decodedToken,
+  };
+};
+
+export const logout = () => {
+  tokenManager.clearToken();
 };

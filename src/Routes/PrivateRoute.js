@@ -1,4 +1,3 @@
-// src/Routes/PrivateRoute.js
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -8,29 +7,21 @@ const PrivateRoute = ({ roleRequired }) => {
   const location = useLocation();
 
   if (!isAuthenticated) {
-    switch (roleRequired) {
-      case "student":
-        return <Navigate to="/student/login" state={{ from: location }} replace />;
-      case "teacher":
-        return <Navigate to="/teacher/login" state={{ from: location }} replace />;
-      case "admin":
-        return <Navigate to="/admin/login" state={{ from: location }} replace />;
-      default:
-        return <Navigate to="/login" replace />;
-    }
+    const loginRoutes = {
+      student: "/student/login",
+      teacher: "/teacher/login",
+      admin: "/admin/login",
+    };
+    return <Navigate to={loginRoutes[roleRequired] || "/login"} state={{ from: location }} replace />;
   }
 
-  if (user.role !== roleRequired) {
-    switch (user.role) {
-      case "student":
-        return <Navigate to="/student/dashboard" replace />;
-      case "teacher":
-        return <Navigate to="/teacher/dashboard" replace />;
-      case "admin":
-        return <Navigate to="/admin/dashboard" replace />;
-      default:
-        return <Navigate to="/login" replace />;
-    }
+  if (user && user.role !== roleRequired) {
+    const dashboardRoutes = {
+      student: "/student/dashboard",
+      teacher: "/teacher/dashboard",
+      admin: "/admin/dashboard",
+    };
+    return <Navigate to={dashboardRoutes[user.role]} replace />;
   }
 
   return <Outlet />;

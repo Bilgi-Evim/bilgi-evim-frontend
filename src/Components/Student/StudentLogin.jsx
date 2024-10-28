@@ -17,15 +17,12 @@ const StudentLogin = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsExpanded(true);
-    }, 10);
-    return () => clearTimeout(timer);
-  }, []);
+  console.log("Redux isAuthenticated:", isAuthenticated);
+  console.log("Redux user:", user);
 
   useEffect(() => {
-    if (isAuthenticated && user.role === "student") {
+    if (isAuthenticated && user?.role === "student") {
+      console.log("Kullanıcı giriş yapmış, yönlendirme yapılıyor...");
       toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
         position: "top-center",
         autoClose: 1000,
@@ -34,9 +31,16 @@ const StudentLogin = () => {
       });
       setTimeout(() => {
         navigate("/student/dashboard", { replace: true });
-      }, 2000);
+      }, 1500);
     }
   }, [isAuthenticated, user, navigate]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsExpanded(true);
+    }, 10);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -45,7 +49,10 @@ const StudentLogin = () => {
     const credentials = { tc, password, school_number: schoolNumber };
     dispatch(login({ credentials, role: "student" }))
       .unwrap()
-      .catch(() => {
+      .then((result) => {
+      })
+      .catch((error) => {
+        console.error("Giriş hatası:", error);
         toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
           position: "top-center",
           autoClose: 3000,

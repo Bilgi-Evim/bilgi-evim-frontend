@@ -8,12 +8,12 @@ import TeachersList from '../Components/Admin/TeachersList';
 import Messages from '../Components/Admin/Messages';
 import Feedback from '../Components/Admin/Feedback';
 import Reports from '../Components/Admin/Reports';
+import PrivateRoute from './PrivateRoute';
 
-const AdminRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Navigate to="dashboard" replace />} />
-      <Route path="/login" element={<AdminLogin />} />
+const AdminRoutes = () => (
+  <Routes>
+    <Route path="/login" element={<AdminLogin />} />
+    <Route element={<PrivateRoute roleRequired="admin" />}>
       <Route path="/dashboard" element={<AdminDashboard />} />
       <Route path="/students-list" element={<StudentList />} />
       <Route path="/teachers-list" element={<TeachersList />} />
@@ -21,8 +21,8 @@ const AdminRoutes = () => {
       <Route path="/reports" element={<Reports />} />
       <Route path="/feedback" element={<Feedback />} />
       <Route path="/settings" element={<AdminSettings />} />
-    </Routes>
-  );
-};
+    </Route>
+  </Routes>
+);
 
 export default AdminRoutes;

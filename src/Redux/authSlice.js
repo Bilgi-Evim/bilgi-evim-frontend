@@ -1,4 +1,3 @@
-// src/redux/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCurrentUser, login as loginService, logout as logoutService } from "../Services/authService";
 
@@ -14,13 +13,15 @@ export const login = createAsyncThunk(
   }
 );
 
+const initialState = {
+  user: getCurrentUser(),
+  isAuthenticated: !!getCurrentUser(),
+  error: null,
+};
+
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: getCurrentUser(),
-    isAuthenticated: !!getCurrentUser(),
-    error: null,
-  },
+  initialState,
   reducers: {
     clearUser: (state) => {
       state.user = null;
@@ -31,7 +32,10 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.user = { token: action.payload.access_token, role: action.payload.role };
+        state.user = {
+          token: action.payload.access_token,
+          role: action.payload.role,
+        };
         state.isAuthenticated = true;
         state.error = null;
       })
