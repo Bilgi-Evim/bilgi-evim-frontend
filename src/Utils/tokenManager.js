@@ -1,5 +1,4 @@
-// /src/utils/tokenManager.js
-const TOKEN_KEY = 'authToken';
+const TOKEN_KEY = 'access_token';
 
 const saveToken = (token) => {
   localStorage.setItem(TOKEN_KEY, token);
@@ -13,10 +12,8 @@ const clearToken = () => {
   localStorage.removeItem(TOKEN_KEY);
 };
 
-const tokenManager = {
+export default {
   saveToken,
   getToken,
   clearToken,
 };
-
-export default tokenManager;

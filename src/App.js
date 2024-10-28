@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -9,7 +8,6 @@ import StudentRoutes from "./Routes/StudentRoutes";
 import TeacherRoutes from "./Routes/TeacherRoutes";
 import About from "./Pages/AboutUs";
 import Contact from "./Pages/Contact";
-
 
 function App() {
   return (
