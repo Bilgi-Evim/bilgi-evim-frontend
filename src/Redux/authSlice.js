@@ -1,11 +1,17 @@
+// authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getCurrentUser, login as loginService, logout as logoutService } from "../Services/authService";
+import {
+  getCurrentUser,
+  login as loginService,
+  logout as logoutService,
+} from "../Services/authService";
 import { startLoading, stopLoading } from "./loadingSlice";
+import notificationService from "../Services/notificationService";
 
 export const login = createAsyncThunk(
   "auth/login",
   async ({ credentials, role }, { dispatch, rejectWithValue }) => {
-    dispatch(setLoadingMessage("Giriş yapılıyor..."));
+    dispatch(setLoadingMessage("Giriş yapılıyor"));
     dispatch(startLoading());
     try {
       const response = await loginService(credentials, role);
@@ -19,11 +25,17 @@ export const login = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk("auth/logout", async (_, { dispatch }) => {
-  dispatch(setLoadingMessage("Çıkış yapılıyor..."));
+  dispatch(setLoadingMessage("Çıkış yapılıyor"));
   dispatch(startLoading());
+
   await new Promise((resolve) => setTimeout(resolve, 2000));
+
   logoutService();
   dispatch(clearUser());
+  
+  await Promise.resolve();
+  notificationService.info("Çıkış işlemi başarılı"); 
+  
   dispatch(stopLoading());
 });
 
@@ -44,7 +56,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.error = null;
     },
-    setLoadingMessage: (state, action) => { 
+    setLoadingMessage: (state, action) => {
       state.loadingMessage = action.payload;
     },
   },

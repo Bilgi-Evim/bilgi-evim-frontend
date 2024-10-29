@@ -12,7 +12,7 @@ const Loader = () => {
     <div className="loader-overlay">
       <div className="loader-container">
         <div className="spinner"></div>
-        <p>{loadingMessage || "Yükleniyor..." }</p>
+        <p>{loadingMessage || "Yükleniyor" }</p>
       </div>
     </div>
   );

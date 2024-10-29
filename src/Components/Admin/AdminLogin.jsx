@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Admin/AdminLogin.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import notificationService from "../../Services/notificationService";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -18,12 +19,9 @@ const AdminLogin = () => {
 
   useEffect(() => {
     if (isAuthenticated && user?.role === "admin") {
-      toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
-        position: "top-center",
-        autoClose: 1000,
-        pauseOnHover: false,
-        className: "toast-message",
-      });
+      notificationService.success(
+        "Giriş başarılı!"
+      )
       setTimeout(() => {
         navigate("/admin/dashboard", { replace: true });
       }, 1500);
@@ -47,12 +45,7 @@ const AdminLogin = () => {
       .unwrap()
       .then(() => {})
       .catch((error) => {
-        toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
-          position: "top-center",
-          autoClose: 3000,
-          pauseOnHover: false,
-          className: "toast-message",
-        });
+        notificationService.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin")
       })
       .finally(() => {
         setLoading(false);
