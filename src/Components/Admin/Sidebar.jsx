@@ -47,7 +47,7 @@ const Sidebar = () => {
           <Link to="/admin/feedback">Geri Bildirim</Link>
         </li>
         <li>
-          <button onClick={handleLogout}>Çıkış Yap</button>
+          <Link onClick={handleLogout}>Çıkış Yap</Link>
         </li>
       </ul>
     </nav>

@@ -46,7 +46,7 @@ const TeacherSidebar = () => {
           <Link to="/teacher/settings">Ayarlar</Link>
         </li>
         <li>
-          <button onClick={handleLogout}>Çıkış Yap</button>
+          <Link onClick={handleLogout}>Çıkış Yap</Link>
         </li>
       </ul>
     </nav>
