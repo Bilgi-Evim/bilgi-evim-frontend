@@ -1,8 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../Assets/Css/Admin/sidebar.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../Redux/authSlice";
 
 const Sidebar = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout()).then(() => {
+      navigate("/home", { replace: true });
+    });
+  };
+
+
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
@@ -32,12 +46,9 @@ const Sidebar = () => {
         <li>
           <Link to="/admin/feedback">Geri Bildirim</Link>
         </li>
-<<<<<<< refs/remotes/origin/dev/Admin
-=======
         <li>
           <Link onClick={handleLogout}>Çıkış Yap</Link>
         </li>
->>>>>>> local
       </ul>
     </nav>
   );

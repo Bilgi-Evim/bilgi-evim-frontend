@@ -1,7 +1,7 @@
 import React from 'react';
 import "../Assets/Css/Teacher/teacherLayout.css";
 import TeacherSidebar from '../Components/Teacher/TeacherSidebar';
-import TeacherNavbar from '../Components/Teacher/TeacherNavbar'; // Navbar'ı ekliyoruz
+import TeacherNavbar from '../Components/Teacher/TeacherNavbar';
 
 const TeacherLayout = ({ children }) => {
   return (
