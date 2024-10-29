@@ -7,6 +7,7 @@ import { RoleProvider } from "./Context/RoleContext";
 import StudentRoutes from "./Routes/StudentRoutes";
 import TeacherRoutes from "./Routes/TeacherRoutes";
 import About from "./Pages/AboutUs";
+import Loader from "./Components/Common/Loader";
 import Contact from "./Pages/Contact";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <AuthProvider>
         <RoleProvider>
+          <Loader />
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
