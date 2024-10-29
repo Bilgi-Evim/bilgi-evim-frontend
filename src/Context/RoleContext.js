@@ -1,4 +1,3 @@
-// /src/context/RoleContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import { getCurrentUser } from '../Services/authService';
 

@@ -33,14 +33,14 @@ const Header = () => {
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
-                Sayfalar
+                Giriş
               </a>
               <div className="dropdown-menu fade-down m-0">
-                <a href="#" className="dropdown-item">
-                  Ekibimiz
+                <a href="/teacher/login" className="dropdown-item">
+                  Öğretmen
                 </a>
-                <a href="#" className="dropdown-item">
-                  İletişim
+                <a href="/student/login" className="dropdown-item">
+                  Öğrenci
                 </a>
               </div>
             </div>
