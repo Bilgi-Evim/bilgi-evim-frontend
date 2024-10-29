@@ -33,6 +33,12 @@ const TeacherSidebar = () => {
         <li>
           <Link to="/teacher/settings">Ayarlar</Link>
         </li>
+<<<<<<< refs/remotes/origin/dev/Admin
+=======
+        <li>
+          <Link onClick={handleLogout}>Çıkış Yap</Link>
+        </li>
+>>>>>>> local
       </ul>
     </nav>
   );

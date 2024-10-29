@@ -32,6 +32,12 @@ const Sidebar = () => {
         <li>
           <Link to="/admin/feedback">Geri Bildirim</Link>
         </li>
+<<<<<<< refs/remotes/origin/dev/Admin
+=======
+        <li>
+          <Link onClick={handleLogout}>Çıkış Yap</Link>
+        </li>
+>>>>>>> local
       </ul>
     </nav>
   );
