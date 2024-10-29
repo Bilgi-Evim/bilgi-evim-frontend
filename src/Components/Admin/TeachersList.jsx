@@ -1,61 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
+import { adminApi } from "../../Utils/api";
 import "../../Assets/Css/Admin/teachersList.css";
-
-const teachers = {
-  fizik: [
-    {
-      id: 1,
-      name: "Ahmet Yılmaz",
-      email: "ahmet@example.com",
-      photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-    },
-    {
-      id: 2,
-      name: "Fatma Demir",
-      email: "fatma@example.com",
-      photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-    },
-  ],
-  matematik: [
-    {
-      id: 3,
-      name: "Mehmet Ak",
-      email: "mehmet@example.com",
-      photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-    },
-  ],
-  kimya: [
-    {
-      id: 4,
-      name: "Ayşe Öztürk",
-      email: "ayse@example.com",
-      photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-    },
-  ],
-};
+import notificationService from "../../Services/notificationService";
 
 const TeachersList = () => {
+  const [teachersBySubject, setTeachersBySubject] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        setLoading(true);
+        const response = await adminApi.get("/teacher-list");
+        const teachers = response.data;
+
+        // Öğretmenleri branşlara göre grupla
+        const groupedBySubject = teachers.reduce((acc, teacher) => {
+          const subject = teacher.subject;
+          if (!acc[subject]) {
+            acc[subject] = [];
+          }
+          acc[subject].push(teacher);
+          return acc;
+        }, {});
+
+        setTeachersBySubject(groupedBySubject);
+      } catch (error) {
+        setError("Öğretmen verileri alınamadı.");
+        notificationService.error("Öğretmen verileri alınırken bir hata oluştu.");
+        console.error("API Hata:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeachers();
+  }, []);
+
   return (
     <AdminLayout>
       <div className="container mt-5 admin-teachers-list-container">
         <h2 className="text-center mb-4">Öğretmen Listesi</h2>
 
-        {Object.keys(teachers).map((subject) => (
+        {loading && <p>Yükleniyor...</p>}
+        {error && <p className="text-danger">{error}</p>}
+
+        {Object.keys(teachersBySubject).map((subject) => (
           <div key={subject} className="admin-subject-section">
-            <h3 className="admin-subject-title">{subject.charAt(0).toUpperCase() + subject.slice(1)} Öğretmenleri</h3>
+            <h3 className="admin-subject-title">{subject} Öğretmenleri</h3>
             <div className="row">
-              {teachers[subject].map((teacher) => (
+              {teachersBySubject[subject].map((teacher) => (
                 <div key={teacher.id} className="col-md-6 col-lg-4 mb-4">
                   <div className="card admin-teacher-card shadow-sm">
                     <img
-                      src={teacher.photo}
+                      src={teacher.photo || "https://example.com/default-photo.jpg"}
                       className="card-img-top admin-teacher-photo"
-                      alt={`${teacher.name}'ın fotoğrafı`}
+                      alt={`${teacher.name} fotoğrafı`}
                     />
                     <div className="card-body">
-                      <h5 className="admin-teacher-card-title">{teacher.name}</h5>
-                      <p className="admin-teacher-card-text">Email: {teacher.email}</p>
+                      <h5 className="admin-teacher-card-title">
+                        {teacher.name.charAt(0).toUpperCase() + teacher.name.slice(1)} {teacher.lastname.toUpperCase()}
+                      </h5>
+                      <p className="admin-teacher-card-text">Tc: {teacher.tc}</p>
+                      <p className="admin-teacher-card-text">Öğretmen Numarası: {teacher.teacher_number}</p>
+                      <p className="admin-teacher-card-text">Branş: {teacher.subject}</p>
                       <button className="btn admin-teacher-btn-primary">Detaylar</button>
                     </div>
                   </div>
