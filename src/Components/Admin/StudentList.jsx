@@ -1,73 +1,131 @@
+import React, { useEffect, useState } from "react";
+import { adminApi } from "../../Utils/api";
 import "../../Assets/Css/Admin/studentList.css";
-import React from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
-
-const students = [
-  {
-    id: 1,
-    name: "Ali Yılmaz",
-    email: "ali@example.com",
-    class: "10",
-    section: "A",
-    age: 16,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-  {
-    id: 2,
-    name: "Ayşe Demir",
-    email: "ayse@example.com",
-    class: "11",
-    section: "B",
-    age: 17,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-  {
-    id: 3,
-    name: "Mehmet Ak",
-    email: "mehmet@example.com",
-    class: "9",
-    section: "C",
-    age: 15,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-  {
-    id: 4,
-    name: "Fatma Öztürk",
-    email: "fatma@example.com",
-    class: "12",
-    section: "D",
-    age: 18,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-];
+import Modal from "../../Components/Common/Modal";
+import notificationService from "../../Services/notificationService";
 
 const StudentList = () => {
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        setLoading(true);
+        const response = await adminApi.get("/student-list");
+        setStudents(response.data);
+      } catch (error) {
+        setError("Öğrenci verileri alınamadı.");
+        notificationService.error("Öğrenci verileri alınırken bir hata oluştu.");
+        console.error("API Hata:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStudents();
+  }, []);
+
+  const handleUpdateStudent = async () => {
+    try {
+      await adminApi.put(`/student/${selectedStudent.id}`, selectedStudent);
+      notificationService.success("Öğrenci başarıyla güncellendi.");
+      
+      const response = await adminApi.get("/student-list");
+      setStudents(response.data);
+
+      setSelectedStudent(null);
+    } catch (error) {
+      notificationService.error("Öğrenci güncellenemedi.");
+      console.error("Güncelleme Hata:", error);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="container mt-5 admin-student-list-container">
         <h2 className="text-center mb-4">Admin Öğrenci Listesi</h2>
+        {loading && <p>Yükleniyor...</p>}
+        {error && <p className="text-danger">{error}</p>}
         <div className="row">
           {students.map((student) => (
-            <div key={student.id} className="col-md-6 col-lg-4 mb-4">
+            <div key={student.school_number} className="col-md-6 col-lg-4 mb-4">
               <div className="card admin-student-card shadow-sm">
                 <img
-                  src={student.photo}
+                  src={student.photo || "/logo.png"}
                   className="card-img-top admin-student-photo"
-                  alt={`${student.name}'ın fotoğrafı`}
+                  alt={`${student.name} fotoğrafı`}
                 />
                 <div className="card-body">
-                  <h5 className="admin-card-title">{student.name}</h5>
-                  <p className="admin-card-text">Email: {student.email}</p>
-                  <p className="admin-card-text">
-                    Sınıf: {student.class} / {student.section}
-                  </p>
-                  <p className="admin-card-text">Yaş: {student.age}</p>
-                  <button className="btn admin-btn-primary">Detaylar</button>
+                  <h5 className="admin-card-title">
+                    {student.name.charAt(0).toUpperCase() + student.name.slice(1)} {student.lastname.toUpperCase()}
+                  </h5>
+                  <p className="admin-card-text">T.C.: {student.tc}</p>
+                  <p className="admin-card-text">Okul Numarası: {student.school_number}</p>
+                  <p className="admin-card-text">Sınıf: {student.class_id}</p>
+                  <button className="btn admin-btn-primary" onClick={() => setSelectedStudent(student)}>
+                    Detaylar
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        <Modal isOpen={!!selectedStudent} onClose={() => setSelectedStudent(null)}>
+          <h3>Öğrenci Güncelle</h3>
+          <label>İsim</label>
+          <input
+            type="text"
+            value={selectedStudent?.name || ""}
+            onChange={(e) =>
+              setSelectedStudent({ ...selectedStudent, name: e.target.value })
+            }
+          />
+          <label>Soyisim</label>
+          <input
+            type="text"
+            value={selectedStudent?.lastname || ""}
+            onChange={(e) =>
+              setSelectedStudent({ ...selectedStudent, lastname: e.target.value })
+            }
+          />
+          <label>T.C. Kimlik No</label>
+          <input
+            type="text"
+            value={selectedStudent?.tc || ""}
+            onChange={(e) =>
+              setSelectedStudent({ ...selectedStudent, tc: e.target.value })
+            }
+          />
+          <label>Okul Numarası</label>
+          <input
+            type="text"
+            value={selectedStudent?.school_number || ""}
+            onChange={(e) =>
+              setSelectedStudent({ ...selectedStudent, school_number: e.target.value })
+            }
+          />
+          <label>Sınıf</label>
+          <input
+            type="text"
+            value={selectedStudent?.class_id || ""}
+            onChange={(e) =>
+              setSelectedStudent({ ...selectedStudent, class_id: e.target.value })
+            }
+          />
+          <div className="modal-actions">
+            <button className="btn btn-secondary" onClick={() => setSelectedStudent(null)}>
+              Kapat
+            </button>
+            <button className="btn btn-primary" onClick={handleUpdateStudent}>
+              Kaydet
+            </button>
+          </div>
+        </Modal>
       </div>
     </AdminLayout>
   );
