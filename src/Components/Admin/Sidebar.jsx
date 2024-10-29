@@ -21,7 +21,7 @@ const Sidebar = () => {
     <nav className="sidebar">
       <div className="sidebar-header">
         <img src="/logo.png" alt="Admin" className="sidebar-profile-pic mb-3" />
-        <h7 style={{ color: "lime" }}>Admin </h7>
+        <h6 style={{ color: "lime" }}>Admin </h6>
         <h5>Efe Eroğlu</h5>
       </div>
       <ul>

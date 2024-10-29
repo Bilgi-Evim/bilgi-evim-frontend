@@ -1,67 +1,61 @@
+import React, { useEffect, useState } from "react";
+import { adminApi } from "../../Utils/api";
 import "../../Assets/Css/Admin/studentList.css";
-import React from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
-
-const students = [
-  {
-    id: 1,
-    name: "Ali Yılmaz",
-    email: "ali@example.com",
-    class: "10",
-    section: "A",
-    age: 16,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-  {
-    id: 2,
-    name: "Ayşe Demir",
-    email: "ayse@example.com",
-    class: "11",
-    section: "B",
-    age: 17,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-  {
-    id: 3,
-    name: "Mehmet Ak",
-    email: "mehmet@example.com",
-    class: "9",
-    section: "C",
-    age: 15,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-  {
-    id: 4,
-    name: "Fatma Öztürk",
-    email: "fatma@example.com",
-    class: "12",
-    section: "D",
-    age: 18,
-    photo: "https://www.webtekno.com/images/editor/default/0003/83/f1dee8d4cf45b8f90916002d42eb0ec627c50d07.jpeg",
-  },
-];
+import notificationService from "../../Services/notificationService";
 
 const StudentList = () => {
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        setLoading(true);
+        const response = await adminApi.get("/student-list");
+        setStudents(response.data);
+      } catch (error) {
+        setError("Öğrenci verileri alınamadı.");
+        notificationService.error(
+          "Öğrenci verileri alınırken bir hata oluştu."
+        );
+        console.error("API Hata:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStudents();
+  }, []);
+
   return (
     <AdminLayout>
       <div className="container mt-5 admin-student-list-container">
         <h2 className="text-center mb-4">Admin Öğrenci Listesi</h2>
+        {loading && <p>Yükleniyor...</p>}
+        {error && <p className="text-danger">{error}</p>}
         <div className="row">
           {students.map((student) => (
-            <div key={student.id} className="col-md-6 col-lg-4 mb-4">
+            <div key={student.school_number} className="col-md-6 col-lg-4 mb-4">
               <div className="card admin-student-card shadow-sm">
                 <img
-                  src={student.photo}
+                  src={
+                    student.photo ||
+                    "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=360"
+                  }
                   className="card-img-top admin-student-photo"
-                  alt={`${student.name}'ın fotoğrafı`}
+                  alt={`${student.name} fotoğrafı`}
                 />
                 <div className="card-body">
-                  <h5 className="admin-card-title">{student.name}</h5>
-                  <p className="admin-card-text">Email: {student.email}</p>
+                  <h5 className="admin-card-title">
+                    {student.name.charAt(0).toUpperCase() + student.name.slice(1)} {student.lastname.toUpperCase()}
+                  </h5>
+                  <p className="admin-card-text">T.C.: {student.tc}</p>
                   <p className="admin-card-text">
-                    Sınıf: {student.class} / {student.section}
+                    Okul Numarası: {student.school_number}
                   </p>
-                  <p className="admin-card-text">Yaş: {student.age}</p>
+                  <p className="admin-card-text">Sınıf: {student.class_id}</p>
                   <button className="btn admin-btn-primary">Detaylar</button>
                 </div>
               </div>
