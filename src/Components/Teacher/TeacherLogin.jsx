@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../../Assets/Css/Teacher/teacherLogin.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../Redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import notificationService from "../../Services/notificationService";
 
 const TeacherLogin = () => {
   const [tc, setTc] = useState("");
@@ -19,12 +20,9 @@ const TeacherLogin = () => {
 
   useEffect(() => {
     if (isAuthenticated && user?.role === "teacher") {
-      toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
-        position: "top-center",
-        autoClose: 1000,
-        className: "toast-message",
-        pauseOnHover: false,
-      });
+        notificationService.success(
+          "Giriş Başarılı! Ana sayfa'ya yönlendiriliyorsunuz."
+        )
       setTimeout(() => {
         navigate("/teacher/dashboard", { replace: true });
       }, 1500);
@@ -47,13 +45,9 @@ const TeacherLogin = () => {
       .unwrap()
       .then((result) => {})
       .catch((error) => {
-        console.error("Giriş hatası:", error);
-        toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
-          position: "top-center",
-          autoClose: 3000,
-          pauseOnHover: false,
-          className: "toast-message",
-        });
+        notificationService.error(
+          "Giriş başarısız, lütfen bilgilerini kontrol edin."
+        )
       })
       .finally(() => setLoading(false));
   };

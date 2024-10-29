@@ -7,8 +7,10 @@ import { RoleProvider } from "./Context/RoleContext";
 import StudentRoutes from "./Routes/StudentRoutes";
 import TeacherRoutes from "./Routes/TeacherRoutes";
 import About from "./Pages/AboutUs";
-import Loader from "./Components/Common/Loader";
 import Contact from "./Pages/Contact";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loader from "./Components/Common/Loader";
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
       <AuthProvider>
         <RoleProvider>
           <Loader />
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />

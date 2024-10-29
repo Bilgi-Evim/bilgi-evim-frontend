@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Redux/authSlice";
 import "react-toastify/dist/ReactToastify.css";
 import "../../Assets/Css/Student/studentLogin.css";
+import notificationService from "../../Services/notificationService";
 
 const StudentLogin = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -19,12 +20,9 @@ const StudentLogin = () => {
 
   useEffect(() => {
     if (isAuthenticated && user?.role === "student") {
-      toast.success("Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz.", {
-        position: "top-center",
-        autoClose: 1000,
-        className: "toast-message",
-        pauseOnHover: false,
-      });
+      notificationService.success(
+        "Giriş başarılı! Ana sayfa'ya yönlendiriliyorsunuz."
+      );
       setTimeout(() => {
         navigate("/student/dashboard", { replace: true });
       }, 1500);
@@ -45,15 +43,11 @@ const StudentLogin = () => {
     const credentials = { tc, password, school_number: schoolNumber };
     dispatch(login({ credentials, role: "student" }))
       .unwrap()
-      .then((result) => {
-      })
+      .then((result) => {})
       .catch((error) => {
-        toast.error("Giriş başarısız, lütfen bilgilerinizi kontrol edin.", {
-          position: "top-center",
-          autoClose: 3000,
-          pauseOnHover: false,
-          className: "toast-message",
-        });
+        notificationService.error(
+          "Giriş başarısız, lütfen bilgilerinizi kontrol edin."
+        );
       })
       .finally(() => setLoading(false));
   };
@@ -62,7 +56,11 @@ const StudentLogin = () => {
     <div className={`student-login-page ${isExpanded ? "expanded" : ""}`}>
       <div className="student-login-left">
         <div className="student-login-logo">
-          <img className="student-login-img" src="/logo-tr.png" alt="Bilgi Evim" />
+          <img
+            className="student-login-img"
+            src="/logo-tr.png"
+            alt="Bilgi Evim"
+          />
         </div>
       </div>
       <div className="student-login-right">
@@ -70,7 +68,9 @@ const StudentLogin = () => {
           <h2 className="student-login-title">Öğrenci Giriş</h2>
           <form className="student-login-form" onSubmit={handleLogin}>
             <div className="student-form-group">
-              <label htmlFor="tc" className="student-form-label">T.C. Kimlik No:</label>
+              <label htmlFor="tc" className="student-form-label">
+                T.C. Kimlik No:
+              </label>
               <input
                 type="text"
                 id="tc"
@@ -82,7 +82,9 @@ const StudentLogin = () => {
             </div>
 
             <div className="student-form-group">
-              <label htmlFor="schoolNumber" className="student-form-label">Okul Numarası:</label>
+              <label htmlFor="schoolNumber" className="student-form-label">
+                Okul Numarası:
+              </label>
               <input
                 type="text"
                 id="schoolNumber"
@@ -94,7 +96,9 @@ const StudentLogin = () => {
             </div>
 
             <div className="student-form-group">
-              <label htmlFor="password" className="student-form-label">Şifre:</label>
+              <label htmlFor="password" className="student-form-label">
+                Şifre:
+              </label>
               <input
                 type="password"
                 id="password"
@@ -105,7 +109,11 @@ const StudentLogin = () => {
               />
             </div>
 
-            <button type="submit" className="student-login-button" disabled={loading}>
+            <button
+              type="submit"
+              className="student-login-button"
+              disabled={loading}
+            >
               {loading ? "Giriş Yapılıyor..." : "Giriş Yap"}
             </button>
           </form>

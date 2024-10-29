@@ -14,6 +14,7 @@ const TeacherSidebar = () => {
       navigate("/home", { replace: true });
     });
   };
+  
   return (
     <nav className="teacher-sidebar">
       <div className="sidebar-header">
@@ -22,7 +23,7 @@ const TeacherSidebar = () => {
           alt="Öğretmen"
           className="sidebar-profile-pic mb-3"
         />
-        <h7 style={{ color: "lime" }}>Öğretmen</h7>
+        <h6 style={{ color: "lime" }}>Öğretmen</h6>
         <h5>Efe Eroğlu</h5>
       </div>
       <ul>
