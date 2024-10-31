@@ -59,6 +59,11 @@ const authSlice = createSlice({
     setLoadingMessage: (state, action) => {
       state.loadingMessage = action.payload;
     },
+    expireSession: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+      state.error = "Oturum zamanınız doldu. Lütfen yeniden giriş yapın.";
+    }
   },
   extraReducers: (builder) => {
     builder
