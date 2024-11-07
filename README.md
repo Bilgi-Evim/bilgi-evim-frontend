@@ -1,1 +1,1 @@
-# Bilgi evim frontends,
+# Bilgi evim frontend
